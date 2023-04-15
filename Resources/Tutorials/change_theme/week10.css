@@ -1,0 +1,81 @@
+body {
+    background-color: red;
+}
+
+/* Posts with different bakcground color depending if they are even or odd */
+div.post:nth-child(odd) {
+    background-color: lightgray;
+    
+}
+
+div.post:nth-child(even) {
+    background-color: rgb(185, 178, 178);
+}
+
+div.post {
+    border-radius: 10px;
+    padding: 0.5em 0.5em 0.0em 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0 0 0.1em lightgrey;
+
+}
+div.post:hover{
+    box-shadow: 0 0 0.3em gray;
+}
+
+span.post_header {
+    font-size: 1.25em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+button.show_details {
+    font-size: 1.25em;
+    border-radius: 0.25em;
+    padding: 0.25em;
+    margin: 0.25em 0em 0.25em 0em ;
+    cursor: pointer;
+    background-color: darkslategray;
+    text-align: center;
+    font-weight: lighter;
+    border: none;
+    color: white;
+    position: relative;
+    left: 45%;}
+
+button.show_details:active {
+    background-color: rgb(90, 153, 153);
+}
+
+
+hr.post_line {
+    margin-top: 0.125em;
+    margin-bottom: 0.125em;
+    border: 0;
+}
+
+p.post_content {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: left;
+}
+
+hr.post_line {
+    margin-top: 0.125em;
+    margin-bottom: 0.125em;
+    border: 0;
+    border-top: 1px solid darkslategray;
+}
+
+span.user_id {
+    display: none;
+}
+
+div.user_details {
+    display: none;
+}
+
+
+

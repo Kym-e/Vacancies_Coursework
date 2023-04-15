@@ -21,6 +21,7 @@
     <link href='https://fonts.googleapis.com/css?family=Mansalva' rel='stylesheet'>
 
     <!-- Javascript -->
+    <script defer src="/Javascript/vacancies.js"></script>
 </head>
 <body>
 <!-- Nav bar -->
@@ -40,14 +41,18 @@
         <img id="vacancies-main-image" src="/images/vacancies/vacancies-main-image.png" alt="Person looking for job"
              width="1308" height="308">
         <!-- Search bar -->
-        <form id="vacancies-search-bar"> <!-- FIXME: check coursework -->
-            <input type="text" placeholder="Search Vacancies">
-            <button type="submit"><i class="fa fa-search"></i></button>
+        <form id="vacanciesForm">
+            <label id="vacancies-search-bar-label" for="vacancies-search-bar">What</label>
+            <input id="vacancies-search-bar" type='text' placeholder='Job title, skill or company' required>
+            <input id="search-button" type="submit" value='Search'>
         </form>
     </section>
 
-    <section>
+    <section id="vacancies-results">
         <!-- Vacancies -->
+        <h3>Vacancies Found</h3>
+        <hr>
+        <p>Title: <span id="title"></span></p>
     </section>
 </main>
 
