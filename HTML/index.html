@@ -12,43 +12,53 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
     <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/CSS/stylesheet.css">
+
+    <!-- Righteous Font -->
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
+
+    <!-- Mansalva Font -->
+    <link href='https://fonts.googleapis.com/css?family=Mansalva' rel='stylesheet'>
 
     <!-- Javascript -->
 
 </head>
-
 <body>
-<!--------------------------------------------------------------------------------------------------------------------->
 <!-- Nav bar -->  <!-- TODO: Copy this across all HTML pages -->
 <nav>
-    <a href="index.html">Logo</a>  <!-- TODO: Insert Logo -->
-    <a href="index.html">Home</a>  <!-- TODO: Insert image or style text -->
-    <a href="vacancies.html">Vacancies</a>  <!-- TODO: Insert image or style text -->
-    <a href="pay.html">Pay Calculator</a>  <!-- TODO: Insert image or style text -->
+    <a id="nav_logo" href="index.html">
+        <img src="/images/nav_bar/nav_logo.png" alt="Nav bar logo" width="200" height="100">
+    </a>
+    <a id="nav_selected_home_link" href="index.html">Home</a>
+    <a id="nav_vacancies_link" href="vacancies.html">Vacancies</a>
+    <a id="nav_pay_calculator_link" href="pay.html">Pay Calculator</a>
+    <hr id="nav-border">
 </nav>
-<!--------------------------------------------------------------------------------------------------------------------->
-<!--
-    Main element of the page
-    Contents: main image & application description
- -->
+
+<!-- Main element of the page | Contents: main image & application description -->
 <main>
     <!-- Main image -->
+    <img id="index_main_image" src="/images/index/index_main_image.png" alt="Person applying for job" width="1308" height="460">
 
-
-    <!-- App Description Text -->
-    <article class="application-description">
-
+    <!-- Application Description Text -->
+    <article class="index-application-description">
+        <p id="index-application-description-text">Search for your dream job! using our list of
+            <b><u>vacancies</u></b> and work out how much you could be earning using our <b><u>Pay Calculator</u></b></p>
     </article>
 </main>
-<!--------------------------------------------------------------------------------------------------------------------->
+
 <!-- Navigation Cards: Not sure if this should be a section -->
 <section>
     <!-- Vacancies Card -->
-
+    <a id="index-vacancies-card" href="vacancies.html">
+        <img src="/images/index/index_vacancies_card.png" alt="Person looking for vacancies" width="600" height="150">
+    </a>
     <!-- Payment Calculator Card -->
+    <a id="index-payment-calculator-card" href="pay.html">
+        <img src="/images/index/index_payment_calculator_card.png" alt="Toy sitting on top of coins"
+             width="600" height="150">
+    </a>
 
 </section>
-<!--------------------------------------------------------------------------------------------------------------------->
-
 </body>
 </html>

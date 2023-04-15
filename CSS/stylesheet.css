@@ -1,0 +1,147 @@
+/*Nav Bar*/
+#nav_logo {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    left: 20px;
+    top: 10px;
+}
+
+/*TODO: align links to the right of the screen*/
+#nav_home_link {
+    position: absolute;
+    width: 67px;
+    height: 29px;
+    left: 900px;
+    top: 50px;
+
+    font-family: 'Righteous', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+
+#nav_selected_home_link {
+    position: absolute;
+    width: 69px;
+    height: 29px;
+    left: 900px;
+    top: 50px;
+
+    font-family: 'Righteous', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #ED1394;
+}
+
+#nav_vacancies_link {
+    position: absolute;
+    width: 116px;
+    height: 29px;
+    left: 1030px;
+    top: 50px;
+
+    font-family: 'Righteous', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+
+#nav_selected_vacancies_link {
+    position: absolute;
+    width: 122px;
+    height: 29px;
+    left: 1030px;
+    top: 50px;
+
+    font-family: 'Righteous', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #ED1394;
+
+}
+
+#nav_pay_calculator_link {
+    position: absolute;
+    /*width: 164px;*/
+    width: 300px;
+    height: 29px;
+    left: 1206px;
+    top: 50px;
+
+    font-family: 'Righteous', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+}
+#nav-border {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    left: 0;
+    top: 120px;
+
+    border: 1px solid #000000;
+}
+
+/*Index.html Main Section*/
+
+#index_main_image {
+    position: absolute;
+    width: 1300px;
+    height: 452px;
+    left: 70px;
+    top: 157px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+#index-application-description-text {
+    font-family: 'Mansalva', monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+
+    /*color: #000000;*/
+    color: #FFFFFF;
+}
+.index-application-description {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 1300px;
+    height: 150px;
+    left: 70px;
+    top: 647px;
+
+    /*background: #FEF9F9;*/
+    background: #ED1394;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/*Index.html Navigation Cards*/
+#index-vacancies-card {
+    position: absolute;
+    width: 600px;
+    height: 150px;
+    left: 70px;
+    top: 834px;
+}
+#index-payment-calculator-card {
+    position: absolute;
+    width: 600px;
+    height: 150px;
+    left: 770px;
+    top: 834px;
+}
