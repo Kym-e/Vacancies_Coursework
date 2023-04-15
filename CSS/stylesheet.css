@@ -181,3 +181,13 @@
     margin-right: 16px;
     font-size: 17px;
 }
+
+/*pay calculator main image*/
+#pay-main-image {
+    position: absolute;
+    width: 1300px;
+    height: 300px;
+    left: 70px;
+    top: 157px;
+
+}
