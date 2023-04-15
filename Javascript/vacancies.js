@@ -53,6 +53,11 @@ function displayJobDetails(data) {
         text += "<h2>";
         text += data[i].title;
         text += "</h2>";
+        text += "<h3> With " + data[i].company + " | " + data[i].location.location + "</h3>";
+        // text += "<h3> Location: " + data[i].location.location + "</h3>";
+        text += "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
+        text += "<p>Job Description: " + data[i].summary + "</p>";
+        text += "<hr>"
         console.log(data[i])
     }
 
