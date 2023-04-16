@@ -49,15 +49,21 @@ function displayJobDetails(data) {
     text += "<hr>"
 
     for (let i = 0; i < 5; i++){
-        // displayJobDetails(data);
+
+        let vacancyTitle = data[i].title;
+        let vacancyCompany = data[i].company;
+        let vacancyLocation = data[i].location.location;
+        let vacancyLink = data[i].link;
+        let vacancySummary = data[i].summary;
+
         text += "<h2>";
-        text += data[i].title;
+        text += vacancyTitle;
         text += "</h2>";
-        text += "<h3> With " + data[i].company + " | " + data[i].location.location + "</h3>";
-        // text += "<h3> Location: " + data[i].location.location + "</h3>";
-        text += "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
-        text += "<p>Job Description: " + data[i].summary + "</p>";
+        text += "<h3> With " + vacancyCompany + " | " + vacancyLocation + "</h3>";
+        text += "<h4></h4><a href='" + vacancyLink + "'>Apply here</a></h4>";
+        text += "<p>Job Description: " + vacancySummary + "</p>";
         text += "<hr>"
+
         console.log(data[i])
     }
 
