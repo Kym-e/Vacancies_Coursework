@@ -1,5 +1,31 @@
 // noinspection JSDeprecatedSymbols
 
+// Top 10 most recent vacancies
+let topTenVacancies = "http://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
+console.log(topTenVacancies)
+
+fetch(topTenVacancies)
+    .then(response => {
+
+    if (response.status === 404) {
+        alert("Vacancies top 10 not found");
+        throw new Error("Vacancies top 10 not found");
+    }
+    return response;
+
+})
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        for (let i = 0; i < 10; i++) {
+            console.log(data);
+            displayJobDetails(data, "Most recent Vacancies")
+        }
+    })
+
+// Search for vacancies
+
 document.getElementById("vacanciesForm").addEventListener("submit", vacanciesApiCall);
 function vacanciesApiCall(evt) {
     evt.preventDefault();
@@ -19,7 +45,7 @@ function vacanciesApiCall(evt) {
     let url = baseUrl + jobSearch;
     console.log(url);
 
-    let apiMethod = "fetch";
+    // let apiMethod = "fetch";
     console.log("API call using fetch");
 
     fetch(url)
@@ -34,20 +60,20 @@ function vacanciesApiCall(evt) {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            displayJobDetails(data)
+            displayJobDetails(data, "Vacancies")
         })
 }
 
-function displayJobDetails(data) {
+function displayJobDetails(data, header) {
     let dataLength = data.length;
 
     // Results box header
     let text;
-    text = "<h1>Results</h1>";
+    text = "<h1>" + dataLength + header + "</h1>";
     text += "<hr>"
 
     // Loop through results
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < dataLength; i++){
         vacancyDetails(i);
         console.log(data[i])
     }
