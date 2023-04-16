@@ -19,37 +19,49 @@ fetch(topTenVacancies)
         console.log(data)
 
         for (let i = 0; i < 10; i++) {
-            // Results box header
-            let text;
-            text = "<h1>10 Most recent results</h1>";
-            text += "<hr>"
+            // Button
+            const buttonTag = document.createElement("button");
+            buttonTag.className = 'collapsible';
+            const buttonTextNode = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
+            buttonTag.appendChild(buttonTextNode);
+            const vacancyResults = document.getElementById("vacancies-results");
+            vacancyResults.appendChild(buttonTag);
 
-            // Loop through results
-            for (let i = 0; i < 10; i++){
-                let vacancyTitle = "<h1 id='vacancy-title'>" + data[i].title + "</h1>";
-                let vacancyCompany = "<h3> With " + data[i].company;
-                let vacancyLocation = data[i].location.location + "</h3>";
-                let vacancyLink = "<a id='vacancy-link' href='" + data[i].link + "'>Apply here</a>";
-                let vacancySummary = "<p id='vacancy-summary'>Job Description: " + data[i].summary + + "</p>";
+            // Div - content
+            const divTag = document.createElement("div");
+            divTag.className = 'content';
+            const divTagText = document.createTextNode(data[i].summary);
+            divTag.appendChild(divTagText);
+            vacancyResults.appendChild(divTag);
 
-                text += "<article class='vacancy'>";
-                text += '<button id="vacancy-button">'
-                    + vacancyTitle
-                    + vacancyCompany + " | " + vacancyLocation
-                    + "<p>Click for more details</p>"
-                    + "</button>"
+            // Break
+            const br = document.createElement('br');
+            divTag.appendChild(br);
 
-                text += vacancySummary;
-                text += "<br>"
-                text += vacancyLink;
-                text += "</article>"
+            // link
+            const a = document.createElement('a');
+            const link = document.createTextNode("Apply Here | Link to application")
+            a.appendChild(link);
+            a.title = "Apply Here";
+            a.href = data[i].link;
+            divTag.appendChild(a);
 
-            }
+        }
+        // Show and hide vacancies
+        const coll = document.getElementsByClassName("collapsible");
+        let j;
 
-            // Display results
-            document.getElementById("vacancies-results").style.display = "block";
-            document.getElementById("vacancies-results").innerHTML = text;
+        for (j = 0; j < coll.length; j++) {
+            coll[j].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
 
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
         }
     })
 
@@ -123,4 +135,6 @@ function displayJobDetails(data, header) {
         text += "<hr>"
     }
 }
+
+
 
