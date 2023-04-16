@@ -2,7 +2,6 @@
 
 // Top 10 most recent vacancies
 let topTenVacancies = "http://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
-console.log(topTenVacancies)
 
 fetch(topTenVacancies)
     .then(response => {
@@ -16,10 +15,10 @@ fetch(topTenVacancies)
 })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        console.log("Ten recent vacancies")
+        console.log(data)
 
         for (let i = 0; i < 10; i++) {
-            console.log(data);
             // Results box header
             let text;
             text = "<h1>10 Most recent results</h1>";
@@ -27,18 +26,24 @@ fetch(topTenVacancies)
 
             // Loop through results
             for (let i = 0; i < 10; i++){
-                let vacancyTitle = "<h2>" + data[i].title + "</h2>";
+                let vacancyTitle = "<h1 id='vacancy-title'>" + data[i].title + "</h1>";
                 let vacancyCompany = "<h3> With " + data[i].company;
                 let vacancyLocation = data[i].location.location + "</h3>";
-                let vacancyLink = "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
-                let vacancySummary = "<p>Job Description: " + data[i].summary + + "</p>";
+                let vacancyLink = "<a id='vacancy-link' href='" + data[i].link + "'>Apply here</a>";
+                let vacancySummary = "<p id='vacancy-summary'>Job Description: " + data[i].summary + + "</p>";
 
-                text += vacancyTitle;
-                text += vacancyCompany + " | " + vacancyLocation;
-                text += vacancyLink;
+                text += "<article class='vacancy'>";
+                text += '<button id="vacancy-button">'
+                    + vacancyTitle
+                    + vacancyCompany + " | " + vacancyLocation
+                    + "<p>Click for more details</p>"
+                    + "</button>"
+
                 text += vacancySummary;
-                text += "<hr>"
-                console.log(data[i])
+                text += "<br>"
+                text += vacancyLink;
+                text += "</article>"
+
             }
 
             // Display results
@@ -69,9 +74,6 @@ function vacanciesApiCall(evt) {
     let url = baseUrl + jobSearch;
     console.log(url);
 
-    // let apiMethod = "fetch";
-    console.log("API call using fetch");
-
     fetch(url)
         .then(response => {
             // Error handling
@@ -83,7 +85,8 @@ function vacanciesApiCall(evt) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log("Search Results")
+            console.log(data)
             displayJobDetails(data, "Vacancies")
         })
 }
@@ -99,7 +102,6 @@ function displayJobDetails(data, header) {
     // Loop through results
     for (let i = 0; i < dataLength; i++){
         vacancyDetails(i);
-        console.log(data[i])
     }
 
     // Display results

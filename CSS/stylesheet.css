@@ -246,6 +246,14 @@
 
 }
 
+p#vacancy-summary {
+    /*display: none;*/
+}
+
+#vacancy-button {
+    width: 1300px;
+}
+
 /*pay calculator main image*/
 #pay-main-image {
     position: absolute;
