@@ -1,3 +1,5 @@
+// noinspection JSDeprecatedSymbols
+
 document.getElementById("vacanciesForm").addEventListener("submit", vacanciesApiCall);
 function vacanciesApiCall(evt) {
     evt.preventDefault();
@@ -23,52 +25,49 @@ function vacanciesApiCall(evt) {
     fetch(url)
         .then(response => {
             // Error handling
-            if (response.status == 404) {
+            if (response.status === 404) {
                 alert("Job not found");
                 throw new Error("Job not found")
             }
             return response;
         })
-
         .then(response => response.json())
-
         .then(data => {
             console.log(data);
-
             displayJobDetails(data)
-
         })
 }
-
 
 function displayJobDetails(data) {
     let dataLength = data.length;
 
+    // Results box header
     let text;
     text = "<h1>Results</h1>";
     text += "<hr>"
 
+    // Loop through results
     for (let i = 0; i < 5; i++){
-
-        let vacancyTitle = data[i].title;
-        let vacancyCompany = data[i].company;
-        let vacancyLocation = data[i].location.location;
-        let vacancyLink = data[i].link;
-        let vacancySummary = data[i].summary;
-
-        text += "<h2>";
-        text += vacancyTitle;
-        text += "</h2>";
-        text += "<h3> With " + vacancyCompany + " | " + vacancyLocation + "</h3>";
-        text += "<h4></h4><a href='" + vacancyLink + "'>Apply here</a></h4>";
-        text += "<p>Job Description: " + vacancySummary + "</p>";
-        text += "<hr>"
-
+        vacancyDetails(i);
         console.log(data[i])
     }
 
-    // console.log(data)
+    // Display results
     document.getElementById("vacancies-results").style.display = "block";
     document.getElementById("vacancies-results").innerHTML = text;
+
+    function vacancyDetails(i) {
+        let vacancyTitle = "<h2>" + data[i].title + "</h2>";
+        let vacancyCompany = "<h3> With " + data[i].company;
+        let vacancyLocation = data[i].location.location + "</h3>";
+        let vacancyLink = "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
+        let vacancySummary = "<p>Job Description: " + data[i].summary + + "</p>";
+
+        text += vacancyTitle;
+        text += vacancyCompany + " | " + vacancyLocation;
+        text += vacancyLink;
+        text += vacancySummary;
+        text += "<hr>"
+    }
 }
 
