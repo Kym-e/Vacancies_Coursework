@@ -20,7 +20,31 @@ fetch(topTenVacancies)
 
         for (let i = 0; i < 10; i++) {
             console.log(data);
-            displayJobDetails(data, "Most recent Vacancies")
+            // Results box header
+            let text;
+            text = "<h1>10 Most recent results</h1>";
+            text += "<hr>"
+
+            // Loop through results
+            for (let i = 0; i < 10; i++){
+                let vacancyTitle = "<h2>" + data[i].title + "</h2>";
+                let vacancyCompany = "<h3> With " + data[i].company;
+                let vacancyLocation = data[i].location.location + "</h3>";
+                let vacancyLink = "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
+                let vacancySummary = "<p>Job Description: " + data[i].summary + + "</p>";
+
+                text += vacancyTitle;
+                text += vacancyCompany + " | " + vacancyLocation;
+                text += vacancyLink;
+                text += vacancySummary;
+                text += "<hr>"
+                console.log(data[i])
+            }
+
+            // Display results
+            document.getElementById("vacancies-results").style.display = "block";
+            document.getElementById("vacancies-results").innerHTML = text;
+
         }
     })
 
@@ -69,7 +93,7 @@ function displayJobDetails(data, header) {
 
     // Results box header
     let text;
-    text = "<h1>" + dataLength + header + "</h1>";
+    text = "<h1>" + dataLength + " " + header + "</h1>";
     text += "<hr>"
 
     // Loop through results
@@ -83,6 +107,7 @@ function displayJobDetails(data, header) {
     document.getElementById("vacancies-results").innerHTML = text;
 
     function vacancyDetails(i) {
+
         let vacancyTitle = "<h2>" + data[i].title + "</h2>";
         let vacancyCompany = "<h3> With " + data[i].company;
         let vacancyLocation = data[i].location.location + "</h3>";
