@@ -246,6 +246,19 @@
 
 }
 
+#vacancies-search-results {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 1300px;
+    left: 70px;
+    top: 500px;
+
+    background: #FEF9F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
 
 .collapsible {
     background-color: #B7409C;
@@ -281,6 +294,54 @@
 }
 
 .content {
+    font-family: monospace;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 29px;
+    color: #000000;
+
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+.collapsible1 {
+    background-color: #B7409C;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 2px solid #000000;
+    text-align: left;
+    outline: none;
+    font-size: 30px;
+
+    font-family: monospace;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+}
+
+.active, .collapsible1:hover {
+    background-color: #ED1394;
+}
+
+.collapsible1:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content1 {
     font-family: monospace;
     font-style: normal;
     font-weight: 400;

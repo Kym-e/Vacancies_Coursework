@@ -72,6 +72,8 @@ function vacanciesApiCall(evt) {
     evt.preventDefault();
 
     let jobSearch = document.getElementById("vacancies-search-bar").value;
+    console.log(jobSearch)
+
     let baseUrl = "https://api.lmiforall.org.uk/api/v1/vacancies/search?keywords=";
 
     let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search";
@@ -99,40 +101,57 @@ function vacanciesApiCall(evt) {
         .then(data => {
             console.log("Search Results")
             console.log(data)
-            displayJobDetails(data, "Vacancies")
+            displayJobDetails(data, "Results")
         })
+
 }
 
 function displayJobDetails(data, header) {
     let dataLength = data.length;
 
-    // Results box header
-    let text;
-    text = "<h1>" + dataLength + " " + header + "</h1>";
-    text += "<hr>"
-
     // Loop through results
     for (let i = 0; i < dataLength; i++){
-        vacancyDetails(i);
+        const buttonTag1 = document.createElement("button");
+        buttonTag1.className = 'collapsible1';
+        const buttonTextNode1 = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
+        buttonTag1.appendChild(buttonTextNode1);
+        const vacancySearchResults = document.getElementById("vacancies-search-results");
+        vacancySearchResults.appendChild(buttonTag1);
+
+        // Div - content
+        const divTag1 = document.createElement("div");
+        divTag1.className = 'content1';
+        const divTagText1 = document.createTextNode(data[i].summary);
+        divTag1.appendChild(divTagText1);
+        vacancySearchResults.appendChild(divTag1);
+
+        // Break
+        const br1 = document.createElement('br');
+        divTag1.appendChild(br1);
+
+        // link
+        const a1 = document.createElement('a');
+        const link1 = document.createTextNode("Apply Here | Link to application")
+        a1.appendChild(link1);
+        a1.title = "Apply Here";
+        a1.href = data[i].link;
+        divTag1.appendChild(a1);
     }
+    // Show and hide vacancies
+    const coll1 = document.getElementsByClassName("collapsible1");
+    let j;
 
-    // Display results
-    document.getElementById("vacancies-results").style.display = "block";
-    document.getElementById("vacancies-results").innerHTML = text;
+    for (j = 0; j < coll1.length; j++) {
+        coll1[j].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
 
-    function vacancyDetails(i) {
-
-        let vacancyTitle = "<h2>" + data[i].title + "</h2>";
-        let vacancyCompany = "<h3> With " + data[i].company;
-        let vacancyLocation = data[i].location.location + "</h3>";
-        let vacancyLink = "<h4></h4><a href='" + data[i].link + "'>Apply here</a></h4>";
-        let vacancySummary = "<p>Job Description: " + data[i].summary + + "</p>";
-
-        text += vacancyTitle;
-        text += vacancyCompany + " | " + vacancyLocation;
-        text += vacancyLink;
-        text += vacancySummary;
-        text += "<hr>"
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
     }
 }
 
