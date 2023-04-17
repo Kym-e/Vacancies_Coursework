@@ -123,7 +123,8 @@ function displayJobDetails(data, header) {
     let dataLength = data.length;  // Used if I want to show all vacancies (max 50 as per API)
 
     // Loop through results
-    for (let i = 0; i < 10; i++){
+    let jobTitle;
+    for (let i = 0; i < 10; i++) {
         // Button
         const buttonTag1 = document.createElement("button");
         buttonTag1.className = 'collapsible1';
@@ -158,7 +159,12 @@ function displayJobDetails(data, header) {
 
         // new code
         let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
-        let url2 = baseUrlJobDescriptions + data[i].title;
+
+        jobTitle = data[i].title.toLowerCase();
+        jobTitle = encodeURIComponent(jobTitle);
+
+
+        let url2 = baseUrlJobDescriptions + jobTitle;
         console.log(url2)
 
         fetch(url2)
@@ -172,8 +178,12 @@ function displayJobDetails(data, header) {
             })
             .then(response => response.json())
             .then(data => {
-                console.log("API2 | " + data[i].title)
                 console.log(data[i])
+                console.log("API2 | " + data[i].title)
+                console.log("General Information about " + data[i].title + " careers")
+                console.log("Description | " + data[i].description)
+                console.log("Tasks include | " + data[i].tasks)
+                console.log(" ")
             })
 
     }
