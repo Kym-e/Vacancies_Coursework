@@ -1,7 +1,7 @@
 // noinspection JSDeprecatedSymbols
 
 // Top 10 most recent vacancies
-let topTenVacancies = "http://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
+let topTenVacancies = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
 
 fetch(topTenVacancies)
     .then(response => {
@@ -27,7 +27,7 @@ fetch(topTenVacancies)
             const vacancyResults = document.getElementById("vacancies-results");
             vacancyResults.appendChild(buttonTag);
 
-            // Div - content
+            // Div - content - Job description
             const divTag = document.createElement("div");
             divTag.className = 'content';
             const divTagText = document.createTextNode(data[i].summary);
@@ -76,8 +76,8 @@ function vacanciesApiCall(evt) {
 
     let baseUrl = "https://api.lmiforall.org.uk/api/v1/vacancies/search?keywords=";
 
-    let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search";
-    let jobDescriptionCode;
+    let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+
 
     // sanitise input
     jobSearch = jobSearch.toLowerCase();
@@ -102,9 +102,20 @@ function vacanciesApiCall(evt) {
         .then(data => {
             console.log("Search Results")
             console.log(data)
+
             displayJobDetails(data, "Results")
+
             const element = document.getElementById("vacancies-results"); element.remove();
+
+            // // new code
+            // let url2 = baseUrlJobDescriptions + "tester";
+            // return fetch(url2);
         })
+
+        // .then(response => response.json())
+        // .then(response => {
+        //     console.log(response);
+        // })
 
 }
 
@@ -113,8 +124,10 @@ function displayJobDetails(data, header) {
 
     // Loop through results
     for (let i = 0; i < 10; i++){
+        // Button
         const buttonTag1 = document.createElement("button");
         buttonTag1.className = 'collapsible1';
+        // console.log(data[i]);
         const buttonTextNode1 = document.createTextNode(
             data[i].title
             + " with " + data[i].company
@@ -142,6 +155,27 @@ function displayJobDetails(data, header) {
         a1.title = "Apply Here";
         a1.href = data[i].link;
         divTag1.appendChild(a1);
+
+        // new code
+        let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+        let url2 = baseUrlJobDescriptions + data[i].title;
+        console.log(url2)
+
+        fetch(url2)
+            .then(response => {
+                // Error handling
+                if (response.status === 404) {
+                    alert("Job not found");
+                    throw new Error("Job not found")
+                }
+                return response;
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("API2 | " + data[i].title)
+                console.log(data[i])
+            })
+
     }
     // Show and hide vacancies
     const coll1 = document.getElementsByClassName("collapsible1");
@@ -161,5 +195,6 @@ function displayJobDetails(data, header) {
     }
 }
 
-
+// FIXME: On search, results append if search completed before.  May need to replace?
+// TODO: Add header to results
 
