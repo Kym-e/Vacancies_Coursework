@@ -99,7 +99,7 @@ fetch(topTenVacancies)
                     divTag.appendChild(careerTasksTag)
 
                     const commonTasksTag = document.createElement('p')
-                    const commonTasksTextNode = document.createTextNode(data[i].tasks)
+                    const commonTasksTextNode = document.createTextNode(data[0].tasks)
                     commonTasksTag.appendChild(commonTasksTextNode)
                     divTag.appendChild(commonTasksTag)
                 })
@@ -222,7 +222,6 @@ function displayJobDetails(data, header) {
         jobTitle = encodeURIComponent(jobTitle);
 
         let url2 = baseUrlJobDescriptions + jobTitle;
-        // console.log(url2)
 
         fetch(url2)
             .then(response => {
@@ -263,7 +262,7 @@ function displayJobDetails(data, header) {
                 divTag1.appendChild(careerTasksTag)
 
                 const commonTasksTag = document.createElement('p')
-                const commonTasksTextNode = document.createTextNode(data[i].tasks)
+                const commonTasksTextNode = document.createTextNode(data[0].tasks)
                 commonTasksTag.appendChild(commonTasksTextNode)
                 divTag1.appendChild(commonTasksTag)
 
