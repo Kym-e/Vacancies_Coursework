@@ -18,6 +18,7 @@ fetch(topTenVacancies)
         console.log("Ten recent vacancies")
         console.log(data)
 
+        let jobTitle;
         for (let i = 0; i < 10; i++) {
             // Button
             const buttonTag = document.createElement("button");
@@ -46,24 +47,82 @@ fetch(topTenVacancies)
             a.href = data[i].link;
             divTag.appendChild(a);
 
-        }
-        // Show and hide vacancies
-        const coll = document.getElementsByClassName("collapsible");
-        let j;
+            // NEW CODE
 
-        for (j = 0; j < coll.length; j++) {
-            coll[j].addEventListener("click", function() {
-                this.classList.toggle("active");
-                let content = this.nextElementSibling;
+            // Horizontal Rule
+            const hr = document.createElement('hr');
+            divTag.appendChild(hr);
 
-                if (content.style.maxHeight){
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
+            // new code - API2
+            let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+
+            jobTitle = data[i].title.toLowerCase();
+            jobTitle = encodeURIComponent(jobTitle);
+
+            let url2 = baseUrlJobDescriptions + jobTitle;
+
+            fetch(url2)
+                .then(response => {
+                    // Error handling
+                    if (response.status === 404) {
+                        alert("Job not found");
+                        throw new Error("Job not found")
+                    }
+                    console.log(url2)
+                    return response;
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data[i])
+                    console.log("API2 | " + data[0].title)
+                    console.log("General Information about " + data[0].title + " careers")
+                    console.log("Description | " + data[0].description)
+                    console.log("Tasks include | " + data[0].tasks)
+                    console.log(" ")
+
+                    // General Information about career
+                    const generalInformationHeader = document.createElement('h2')
+                    const generalInformationTextNode = document.createTextNode("General Information about " + data[0].title + " careers")
+                    generalInformationHeader.appendChild(generalInformationTextNode);
+                    divTag.appendChild(generalInformationHeader);
+
+                    // Description
+                    const careerDescriptionTag = document.createElement('p')
+                    const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                    careerDescriptionTag.appendChild(careerDescriptionTextNode);
+                    divTag.appendChild(careerDescriptionTag)
+
+                    // Tasks include
+                    const careerTasksTag = document.createElement('h3')
+                    const careerTasksTextNode = document.createTextNode("Tasks Include ")
+                    careerTasksTag.appendChild(careerTasksTextNode)
+                    divTag.appendChild(careerTasksTag)
+
+                    const commonTasksTag = document.createElement('p')
+                    const commonTasksTextNode = document.createTextNode(data[i].tasks)
+                    commonTasksTag.appendChild(commonTasksTextNode)
+                    divTag.appendChild(commonTasksTag)
+                })
+
         }
-    })
+
+            // Show and hide vacancies
+            const coll = document.getElementsByClassName("collapsible");
+            let j;
+
+            for (j = 0; j < coll.length; j++) {
+                coll[j].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    let content = this.nextElementSibling;
+
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            }
+        })
 
 // Search for vacancies
 
