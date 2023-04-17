@@ -103,19 +103,11 @@ function vacanciesApiCall(evt) {
             console.log("Search Results")
             console.log(data)
 
+            const element = document.getElementById("vacancies-results"); element.remove();  //FIXME: BUG!
+
             displayJobDetails(data, "Results")
 
-            const element = document.getElementById("vacancies-results"); element.remove();
-
-            // // new code
-            // let url2 = baseUrlJobDescriptions + "tester";
-            // return fetch(url2);
         })
-
-        // .then(response => response.json())
-        // .then(response => {
-        //     console.log(response);
-        // })
 
 }
 
@@ -128,7 +120,7 @@ function displayJobDetails(data, header) {
         // Button
         const buttonTag1 = document.createElement("button");
         buttonTag1.className = 'collapsible1';
-        // console.log(data[i]);
+        console.log(data[i].title);
         const buttonTextNode1 = document.createTextNode(
             data[i].title
             + " with " + data[i].company
@@ -141,8 +133,11 @@ function displayJobDetails(data, header) {
         // Div - content
         const divTag1 = document.createElement("div");
         divTag1.className = 'content1';
+
         const divTagText1 = document.createTextNode(data[i].summary);
+
         divTag1.appendChild(divTagText1);
+
         vacancySearchResults.appendChild(divTag1);
 
         // Break
@@ -157,15 +152,18 @@ function displayJobDetails(data, header) {
         a1.href = data[i].link;
         divTag1.appendChild(a1);
 
-        // new code
+        // Horizontal Rule
+        const hr = document.createElement('hr');
+        divTag1.appendChild(hr);
+
+        // new code - API2
         let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
 
         jobTitle = data[i].title.toLowerCase();
         jobTitle = encodeURIComponent(jobTitle);
 
-
         let url2 = baseUrlJobDescriptions + jobTitle;
-        console.log(url2)
+        // console.log(url2)
 
         fetch(url2)
             .then(response => {
@@ -174,17 +172,44 @@ function displayJobDetails(data, header) {
                     alert("Job not found");
                     throw new Error("Job not found")
                 }
+                console.log(url2)
                 return response;
             })
             .then(response => response.json())
             .then(data => {
                 console.log(data[i])
-                console.log("API2 | " + data[i].title)
-                console.log("General Information about " + data[i].title + " careers")
-                console.log("Description | " + data[i].description)
-                console.log("Tasks include | " + data[i].tasks)
+                console.log("API2 | " + data[0].title)
+                console.log("General Information about " + data[0].title + " careers")
+                console.log("Description | " + data[0].description)
+                console.log("Tasks include | " + data[0].tasks)
                 console.log(" ")
+
+                // General Information about career
+                const generalInformationHeader = document.createElement('h2')
+                const generalInformationTextNode = document.createTextNode("General Information about " + data[0].title + " careers")
+                generalInformationHeader.appendChild(generalInformationTextNode);
+                divTag1.appendChild(generalInformationHeader);
+
+                // Description
+                const careerDescriptionTag = document.createElement('p')
+                const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                careerDescriptionTag.appendChild(careerDescriptionTextNode);
+                divTag1.appendChild(careerDescriptionTag)
+
+
+                // Tasks include
+                const careerTasksTag = document.createElement('h3')
+                const careerTasksTextNode = document.createTextNode("Tasks Include ")
+                careerTasksTag.appendChild(careerTasksTextNode)
+                divTag1.appendChild(careerTasksTag)
+
+                const commonTasksTag = document.createElement('p')
+                const commonTasksTextNode = document.createTextNode(data[i].tasks)
+                commonTasksTag.appendChild(commonTasksTextNode)
+                divTag1.appendChild(commonTasksTag)
+
             })
+
 
     }
     // Show and hide vacancies
