@@ -96,24 +96,30 @@ function vacanciesApiCall(evt) {
                 throw new Error("Job not found")
             }
             return response;
+
         })
         .then(response => response.json())
         .then(data => {
             console.log("Search Results")
             console.log(data)
             displayJobDetails(data, "Results")
+            const element = document.getElementById("vacancies-results"); element.remove();
         })
 
 }
 
 function displayJobDetails(data, header) {
-    let dataLength = data.length;
+    let dataLength = data.length;  // Used if I want to show all vacancies (max 50 as per API)
 
     // Loop through results
-    for (let i = 0; i < dataLength; i++){
+    for (let i = 0; i < 10; i++){
         const buttonTag1 = document.createElement("button");
         buttonTag1.className = 'collapsible1';
-        const buttonTextNode1 = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
+        const buttonTextNode1 = document.createTextNode(
+            data[i].title
+            + " with " + data[i].company
+            + " | " + "Location: " + data[i].location.location
+        );
         buttonTag1.appendChild(buttonTextNode1);
         const vacancySearchResults = document.getElementById("vacancies-search-results");
         vacancySearchResults.appendChild(buttonTag1);
