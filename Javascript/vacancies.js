@@ -47,8 +47,6 @@ fetch(topTenVacancies)
             a.href = data[i].link;
             divTag.appendChild(a);
 
-            // NEW CODE
-
             // Horizontal Rule
             const hr = document.createElement('hr');
             divTag.appendChild(hr);
