@@ -40,7 +40,7 @@
 </nav>
 
 <main>
-    <section>
+    <section id="pay-image">
         <!-- Main image -->
         <img id="pay-main-image" src="/images/pay/pay_main_image.png" alt="Toy sitting on top of coins"
         width="1300" height="300">
@@ -85,6 +85,49 @@
         <button type="submit" class="btn btn-outline-dark btn-lg">Calculate</button>
 
     </form>
+
+    <section id="pay-calculation-results">
+        <div class="card">
+            <div class="card-header">
+                Calculation Results
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Job: <b id="user-job"></b></h4>
+                <p class="card-text">Working <b id="user-hours"></b> hours per week for <b id="user-timeframe">£</b> per Month</p>
+                <p class="card-text">Breakdown:</p>
+                <table class="table table-hover table-sm">
+                    <!-- Table header -->
+                    <thead>
+                        <tr>
+                            <th>Wage</th>
+                            <th>Timeframe</th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table body -->
+                    <tbody class="table-group-divider">
+                        <tr id="pay-per-hour-row">
+                            <td id="pay-hourly"></td>
+                            <td>Per Hour</td>
+                        </tr>
+                        <tr id="pay-per-week-row">
+                            <td id="pay-weekly"></td>
+                            <td>Per Week</td>
+                        </tr>
+                        <tr id="pay-per-month-row">
+                            <td id="pay-monthly"></td>
+                            <td>Per Month</td>
+                        </tr>
+                        <tr id="pay-per-year-row">
+                            <td id="pay-annually"></td>
+                            <td>Per Year</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
 </main>
 
 <!-- Bootstrap Script -->
