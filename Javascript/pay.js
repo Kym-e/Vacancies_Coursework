@@ -12,6 +12,8 @@ function results(evt) {
     let timeFrame = document.getElementById("pay-wage-timeframe").value;
     let weeklyHours = document.getElementById("pay-weekly-hours").value;
 
+    document.cookie = "jobTitleCookie = " + jobTitle + "; path=/;";
+
     console.log("User Input")
     console.log("Job Title: " + jobTitle);
     console.log("Wage: " + wage);
@@ -95,6 +97,14 @@ function results(evt) {
     cardTitle.className = 'card-title';
     cardTitle.innerHTML = "Job: " + "<b>" + jobTitle + "</b>";
     results.appendChild(cardTitle);
+
+    // link
+    const a = document.createElement('a');
+    const link = document.createTextNode("See Vacancies")
+    a.appendChild(link);
+    a.title = "Vacancies";
+    a.href = "./vacancies.html";
+    results.appendChild(a);
 
     // User hours worked and timeframe selected
     let hoursAndTimeFrame = document.createElement("p");
@@ -197,11 +207,8 @@ function results(evt) {
 
     document.getElementById("pay-calculation-results-section").style.display = "block";
 
-
-    // NEWCODE
-    window.open("vacancies.html");
-
-    document.cookie = "jobTitleCookie = " + jobTitle + "; path=/;";
+    // Open window without link
+    // window.open("vacancies.html");
 
     let cookie = document.cookie;
     console.log(cookie)

@@ -417,3 +417,13 @@
 #pay-calculation-results-section {
     display: none;
 }
+
+#pay-calculation-results-section2 {
+    position: absolute;
+    width: 1000px;
+    height: 60px;
+    left: 0px;
+    top: 310px;
+
+    display: none;
+}
