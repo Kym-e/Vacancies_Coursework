@@ -109,6 +109,117 @@
     border: 1px solid #000000;
 }
 
+@media (max-width: 400px) {
+    #nav_logo {
+        /*display: none;*/
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        left: 200px;
+        top: 30px;
+    }
+    #nav_home_link {
+        position: absolute;
+        width: 67px;
+        height: 29px;
+        left: 20px;
+        top: 20px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+    #nav_selected_home_link {
+        position: absolute;
+        width: 69px;
+        height: 29px;
+        left: 20px;
+        top: 20px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: #ED1394;
+    }
+
+    #nav_vacancies_link {
+        position: absolute;
+        width: 116px;
+        height: 29px;
+        left: 20px;
+        top: 50px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+
+    #nav_selected_vacancies_link {
+        position: absolute;
+        width: 122px;
+        height: 29px;
+        left: 20px;
+        top: 50px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: #ED1394;
+    }
+
+    #nav_pay_calculator_link {
+        position: absolute;
+        /*width: 164px;*/
+        width: 300px;
+        height: 29px;
+        left: 20px;
+        top: 80px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+
+    #nav_selected_pay_calculator_link {
+        position: absolute;
+        width: 170px;
+        height: 29px;
+        left: 20px;
+        top: 80px;
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: #ED1394;
+
+    }
+
+    #nav-border {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        left: 0;
+        top: 120px;
+
+        border: 1px solid #000000;
+    }
+}
+
 /*Index.html Main Section*/
 
 #index_main_image {
@@ -163,6 +274,55 @@
     left: 770px;
     top: 834px;
     border-radius: 15px;
+}
+
+@media (max-width: 400px){
+    #index_main_image {
+        position: absolute;
+        left: 0px;
+        top: 157px;
+
+        max-width: 400px;
+        max-height: 180px;
+
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 15px;
+    }
+    #index-application-description-text {
+        font-family: 'Mansalva', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 44px;
+        text-align: center;
+
+        /*color: #000000;*/
+        color: #FFFFFF;
+    }
+    .index-application-description {
+        box-sizing: border-box;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        position: absolute;
+        max-width: 400px;
+        height: 300px;
+        left: 0px;
+        top: 350px;
+
+        /*background: #FEF9F9;*/
+        background: #ED1394;
+        /*box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);*/
+        border-radius: 15px;
+    }
+
+    /*Index.html Navigation Cards*/
+    #index-vacancies-card {
+        display: none;
+    }
+    #index-payment-calculator-card {
+        display: none;
 }
 
 /*Vacancies main image*/
@@ -354,6 +514,201 @@
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
 }
+
+    @media (max-width: 400px) {
+        /*Vacancies main image*/
+        #vacancies-main-image {
+            position: absolute;
+            /*width: 1300px;*/
+            max-width: 400px;
+            height: 200px;
+            left: 0px;
+            top: 157px;
+            border-radius: 15px;
+        }
+
+        #vacancies-search-bar {
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 400px;
+            height: 60px;
+            left: 0px;
+            top: 280px;
+
+            background: #FFFCFC;
+            border: 1px solid #000000;
+            border-radius: 10px;
+
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+            color: #000000;
+        }
+
+        #vacancies-search-bar-label {
+            position: absolute;
+            width: 1000px;
+            height: 60px;
+            left: 0px;
+            top: 250px;
+
+            font-family: 'Righteous', monospace;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 29px;
+            color: #000000;
+        }
+
+        #search-button {
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 120px;
+            height: 50px;
+            left: 0px;
+            top: 350px;
+
+            background: #B7409C;
+            border: 1px solid #000000;
+            border-radius: 10px;
+
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+            color: #FFFFFF;
+        }
+
+        #vacancies-results {
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 400px;
+            left: 0px;
+            top: 420px;
+
+            background: #FEF9F9;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        }
+
+        #vacancies-search-results {
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 400px;
+            left: 0px;
+            top: 420px;
+
+            background: #FEF9F9;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .collapsible {
+            background-color: #B7409C;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 2px solid #000000;
+            text-align: left;
+            outline: none;
+            font-size: 30px;
+
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 35px;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #ED1394;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content {
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 29px;
+            color: #000000;
+
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .collapsible1 {
+            background-color: #B7409C;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 2px solid #000000;
+            text-align: left;
+            outline: none;
+            font-size: 30px;
+
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 35px;
+        }
+
+        .active, .collapsible1:hover {
+            background-color: #ED1394;
+        }
+
+        .collapsible1:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content1 {
+            font-family: monospace;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 29px;
+            color: #000000;
+
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+    }
+}
+
 /*pay calculator main image*/
 #pay-main-image {
     position: absolute;
@@ -426,4 +781,80 @@
     top: 310px;
 
     display: none;
+}
+
+@media (max-width: 400px) {
+    /*pay calculator main image*/
+    #pay-main-image {
+        position: absolute;
+        width: 400px;
+        height: 200px;
+        left: 0px;
+        top: 157px;
+    }
+
+    #payForm {
+        box-sizing: border-box;
+
+        position: absolute;
+        width: 400px;
+        height: 570px;
+        left: 0px;
+        top: 400px;
+
+        background: rgba(233, 192, 243, 0.66);
+        border: 1px solid #000000;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+
+    .btn-outline-dark {
+        background-color: #B7409C !important;
+        color: #FFFFFF !important;
+    }
+
+    .btn-outline-dark:hover {
+        background-color: #ED1394 !important;
+    }
+
+    #pay-calculation-results {
+        box-sizing: border-box;
+
+        position: absolute;
+        width: 400px;
+        /*height: 560px;*/
+        left: 0px;
+        top: 1000px;
+
+        background: rgb(255, 255, 255);
+        border: 1px solid #000000;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        font-family: 'Righteous', monospace;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+
+    #pay-calculation-results-section {
+        display: none;
+    }
+
+    #pay-calculation-results-section2 {
+        position: absolute;
+        width: 1000px;
+        height: 60px;
+        left: 0px;
+        top: 310px;
+
+        display: none;
+    }
 }

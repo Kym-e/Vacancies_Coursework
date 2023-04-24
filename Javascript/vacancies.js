@@ -110,7 +110,7 @@ if (cookie != " ") {
 
                         // Description
                         const careerDescriptionTag = document.createElement('p')
-                        const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                        const careerDescriptionTextNode = document.createTextNode(data[0].description)
                         careerDescriptionTag.appendChild(careerDescriptionTextNode);
                         divTag.appendChild(careerDescriptionTag)
 
@@ -237,7 +237,7 @@ if (cookie != " ") {
 
                         // Description
                         const careerDescriptionTag = document.createElement('p')
-                        const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                        const careerDescriptionTextNode = document.createTextNode(data[0].description)
                         careerDescriptionTag.appendChild(careerDescriptionTextNode);
                         divTag.appendChild(careerDescriptionTag)
 
