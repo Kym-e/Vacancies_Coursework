@@ -126,21 +126,18 @@ fetch(topTenVacancies)
 
 document.getElementById("vacanciesForm").addEventListener("submit", vacanciesApiCall);
 
-const element = document.getElementById("vacancies-results");
-element.innerHTML = "";
-
 function vacanciesApiCall(evt) {
     evt.preventDefault();
-    // const element = document.getElementById("vacancies-results");
-    // element.innerHTML = "";
+    const prevElement  = document.getElementById("vacancies-results");
+    prevElement.innerHTML = "";
+
+    const element = document.getElementById("vacancies-search-results");
+    element.innerHTML = "";
 
     let jobSearch = document.getElementById("vacancies-search-bar").value;
     console.log(jobSearch)
 
     let baseUrl = "https://api.lmiforall.org.uk/api/v1/vacancies/search?keywords=";
-
-    let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
-
 
     // sanitise input
     jobSearch = jobSearch.toLowerCase();
@@ -289,7 +286,3 @@ function displayJobDetails(data, header) {
         });
     }
 }
-
-// FIXME: On search, results append if search completed before.  May need to replace?
-// TODO: Add header to results
-
