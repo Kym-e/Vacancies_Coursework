@@ -2,6 +2,8 @@
 let cookie = document.cookie;
 console.log("cookie: " + cookie)
 
+document.cookie = "jobTitleCookie = " + "most%20recent" + "; path=/;";
+
 
 if (cookie != " ") {
 
