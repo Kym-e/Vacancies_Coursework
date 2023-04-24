@@ -2,7 +2,6 @@
 
 let form = document.getElementById("payForm");
 form.addEventListener("submit", results);
-// form.addEventListener("submit", newPage);
 
 function results(evt) {
     evt.preventDefault();
@@ -31,7 +30,7 @@ function results(evt) {
             yearly = +weekly * 52;
             monthly = +yearly / 12;
 
-            hourly  = hourly.toFixed(2);
+            hourly = hourly.toFixed(2);
             weekly = weekly.toFixed(2);
             yearly = yearly.toFixed(2);
             monthly = monthly.toFixed(2);
@@ -45,7 +44,7 @@ function results(evt) {
             yearly = +wage * 52;
             monthly = +yearly / 12;
 
-            hourly  = hourly.toFixed(2);
+            hourly = hourly.toFixed(2);
             weekly = weekly.toFixed(2);
             yearly = yearly.toFixed(2);
             monthly = monthly.toFixed(2);
@@ -54,12 +53,12 @@ function results(evt) {
 
             break;
         case "Monthly":
-            monthly  = +wage;
+            monthly = +wage;
             yearly = +wage * 12;
             weekly = +yearly / 52;
             hourly = +weekly / weeklyHours;
 
-            hourly  = hourly.toFixed(2);
+            hourly = hourly.toFixed(2);
             weekly = weekly.toFixed(2);
             yearly = yearly.toFixed(2);
             monthly = monthly.toFixed(2);
@@ -73,7 +72,7 @@ function results(evt) {
             weekly = +wage / 52;
             hourly = +weekly / weeklyHours;
 
-            hourly  = hourly.toFixed(2);
+            hourly = hourly.toFixed(2);
             weekly = weekly.toFixed(2);
             yearly = yearly.toFixed(2);
             monthly = monthly.toFixed(2);
@@ -101,7 +100,7 @@ function results(evt) {
     let hoursAndTimeFrame = document.createElement("p");
     hoursAndTimeFrame.className = "card-text";
     hoursAndTimeFrame.innerHTML = "Working <b>" + weeklyHours + "</b> hours per week " +
-        "for <b>£" + wage +  " " + timeFrame + "</b>";
+        "for <b>£" + wage + " " + timeFrame + "</b>";
     results.appendChild(hoursAndTimeFrame);
 
     // Breakdown paragraph
@@ -115,7 +114,7 @@ function results(evt) {
     resultTable.className = "table table-hover table-sm";
 
     // Table Header
-    let tableHeader =  document.createElement("thead");
+    let tableHeader = document.createElement("thead");
     resultTable.appendChild(tableHeader);
 
     // Table Header row
@@ -152,7 +151,7 @@ function results(evt) {
     payPerHourRow.appendChild(perHour);
 
     // Pay Per Week Row
-    let payPerWeekRow =  document.createElement("tr");
+    let payPerWeekRow = document.createElement("tr");
     tableBody.appendChild(payPerWeekRow);
 
     // Pay Per Week Wage
@@ -200,11 +199,11 @@ function results(evt) {
 
 
     // NEWCODE
-    let vacancyWindow = window.open("vacancies.html");
-    vacancyWindow.open("vacancies.html")
-    let searchBar = vacancyWindow.document.getElementById("vacancies-search-bar")
-    searchBar.setAttribute("value", jobTitle)
+    window.open("vacancies.html");
 
+    document.cookie = "jobTitleCookie = " + jobTitle + "; path=/;";
 
+    let cookie = document.cookie;
+    console.log(cookie)
 }
 

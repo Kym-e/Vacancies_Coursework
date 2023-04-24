@@ -1,108 +1,258 @@
 // noinspection JSDeprecatedSymbols
+let cookie = document.cookie;
+console.log("cookie: " + cookie)
+
+// let addOn = cookie
+// addOn  = cookie.split("=")
+// addOn = addOn[1]
+// console.log(addOn)
+//
+// addOn = addOn.toLowerCase();
+// addOn = encodeURIComponent(addOn)
 
 // Top 10 most recent vacancies
-let topTenVacancies = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
+// let topTenVacancies = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
 
-fetch(topTenVacancies)
-    .then(response => {
+if (cookie != " ") {
 
-    if (response.status === 404) {
-        alert("Vacancies top 10 not found");
-        throw new Error("Vacancies top 10 not found");
-    }
-    return response;
+    let addOn = cookie
+    addOn  = cookie.split("=")
+    addOn = addOn[1]
+    console.log(addOn)
 
-})
-    .then(response => response.json())
-    .then(data => {
-        console.log("Ten recent vacancies")
-        console.log(data)
+    addOn = addOn.toLowerCase();
+    addOn = encodeURIComponent(addOn)
 
-        let jobTitle;
-        for (let i = 0; i < 10; i++) {
-            // Button
-            const buttonTag = document.createElement("button");
-            buttonTag.className = 'collapsible';
-            const buttonTextNode = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
-            buttonTag.appendChild(buttonTextNode);
-            const vacancyResults = document.getElementById("vacancies-results");
-            vacancyResults.appendChild(buttonTag);
+    let baseUrl = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords="
+    let topTenVacancies = baseUrl + addOn
+    console.log(topTenVacancies)
 
-            // Div - content - Job description
-            const divTag = document.createElement("div");
-            divTag.className = 'content';
-            const divTagText = document.createTextNode(data[i].summary);
-            divTag.appendChild(divTagText);
-            vacancyResults.appendChild(divTag);
+    fetch(topTenVacancies)
+        .then(response => {
 
-            // Break
-            const br = document.createElement('br');
-            divTag.appendChild(br);
+            if (response.status === 404) {
+                alert("Vacancies top 10 not found");
+                throw new Error("Vacancies top 10 not found");
+            }
+            return response;
 
-            // link
-            const a = document.createElement('a');
-            const link = document.createTextNode("Apply Here | Link to application")
-            a.appendChild(link);
-            a.title = "Apply Here";
-            a.href = data[i].link;
-            divTag.appendChild(a);
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Ten recent vacancies")
+            console.log(data)
 
-            // Horizontal Rule
-            const hr = document.createElement('hr');
-            divTag.appendChild(hr);
+            let jobTitle;
+            for (let i = 0; i < 10; i++) {
+                // Button
+                const buttonTag = document.createElement("button");
+                buttonTag.className = 'collapsible';
+                const buttonTextNode = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
+                buttonTag.appendChild(buttonTextNode);
+                const vacancyResults = document.getElementById("vacancies-results");
+                vacancyResults.appendChild(buttonTag);
 
-            // new code - API2
-            let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+                // Div - content - Job description
+                const divTag = document.createElement("div");
+                divTag.className = 'content';
+                const divTagText = document.createTextNode(data[i].summary);
+                divTag.appendChild(divTagText);
+                vacancyResults.appendChild(divTag);
 
-            jobTitle = data[i].title.toLowerCase();
-            jobTitle = encodeURIComponent(jobTitle);
+                // Break
+                const br = document.createElement('br');
+                divTag.appendChild(br);
 
-            let url2 = baseUrlJobDescriptions + jobTitle;
+                // link
+                const a = document.createElement('a');
+                const link = document.createTextNode("Apply Here | Link to application")
+                a.appendChild(link);
+                a.title = "Apply Here";
+                a.href = data[i].link;
+                divTag.appendChild(a);
 
-            fetch(url2)
-                .then(response => {
-                    // Error handling
-                    if (response.status === 404) {
-                        alert("Job not found");
-                        throw new Error("Job not found")
+                // Horizontal Rule
+                const hr = document.createElement('hr');
+                divTag.appendChild(hr);
+
+                // new code - API2
+                let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+
+                jobTitle = data[i].title.toLowerCase();
+                jobTitle = encodeURIComponent(jobTitle);
+
+                let url2 = baseUrlJobDescriptions + jobTitle;
+
+                fetch(url2)
+                    .then(response => {
+                        // Error handling
+                        if (response.status === 404) {
+                            alert("Job not found");
+                            throw new Error("Job not found")
+                        }
+                        console.log(url2)
+                        return response;
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data[i])
+                        console.log("API2 | " + data[0].title)
+                        console.log("General Information about " + data[0].title + " careers")
+                        console.log("Description | " + data[0].description)
+                        console.log("Tasks include | " + data[0].tasks)
+                        console.log(" ")
+
+                        // General Information about career
+                        const generalInformationHeader = document.createElement('h2')
+                        const generalInformationTextNode = document.createTextNode("General Information about " + data[0].title + " careers")
+                        generalInformationHeader.appendChild(generalInformationTextNode);
+                        divTag.appendChild(generalInformationHeader);
+
+                        // Description
+                        const careerDescriptionTag = document.createElement('p')
+                        const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                        careerDescriptionTag.appendChild(careerDescriptionTextNode);
+                        divTag.appendChild(careerDescriptionTag)
+
+                        // Tasks include
+                        const careerTasksTag = document.createElement('h3')
+                        const careerTasksTextNode = document.createTextNode("Tasks Include ")
+                        careerTasksTag.appendChild(careerTasksTextNode)
+                        divTag.appendChild(careerTasksTag)
+
+                        const commonTasksTag = document.createElement('p')
+                        const commonTasksTextNode = document.createTextNode(data[0].tasks)
+                        commonTasksTag.appendChild(commonTasksTextNode)
+                        divTag.appendChild(commonTasksTag)
+
+                    })
+
+            }
+
+            // Show and hide vacancies
+            const coll = document.getElementsByClassName("collapsible");
+            let j;
+
+            for (j = 0; j < coll.length; j++) {
+                coll[j].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    let content = this.nextElementSibling;
+
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
                     }
-                    console.log(url2)
-                    return response;
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // console.log(data[i])
-                    console.log("API2 | " + data[0].title)
-                    console.log("General Information about " + data[0].title + " careers")
-                    console.log("Description | " + data[0].description)
-                    console.log("Tasks include | " + data[0].tasks)
-                    console.log(" ")
+                });
+            }
+            document.cookie = "jobTitleCookie = " + "most%20recent" + "; path=/;";
 
-                    // General Information about career
-                    const generalInformationHeader = document.createElement('h2')
-                    const generalInformationTextNode = document.createTextNode("General Information about " + data[0].title + " careers")
-                    generalInformationHeader.appendChild(generalInformationTextNode);
-                    divTag.appendChild(generalInformationHeader);
+        })
 
-                    // Description
-                    const careerDescriptionTag = document.createElement('p')
-                    const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
-                    careerDescriptionTag.appendChild(careerDescriptionTextNode);
-                    divTag.appendChild(careerDescriptionTag)
 
-                    // Tasks include
-                    const careerTasksTag = document.createElement('h3')
-                    const careerTasksTextNode = document.createTextNode("Tasks Include ")
-                    careerTasksTag.appendChild(careerTasksTextNode)
-                    divTag.appendChild(careerTasksTag)
+} else {
+    let topTenVacancies = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
 
-                    const commonTasksTag = document.createElement('p')
-                    const commonTasksTextNode = document.createTextNode(data[0].tasks)
-                    commonTasksTag.appendChild(commonTasksTextNode)
-                    divTag.appendChild(commonTasksTag)
-                })
+    fetch(topTenVacancies)
+        .then(response => {
 
-        }
+            if (response.status === 404) {
+                alert("Vacancies top 10 not found");
+                throw new Error("Vacancies top 10 not found");
+            }
+            return response;
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Ten recent vacancies")
+            console.log(data)
+
+            let jobTitle;
+            for (let i = 0; i < 10; i++) {
+                // Button
+                const buttonTag = document.createElement("button");
+                buttonTag.className = 'collapsible';
+                const buttonTextNode = document.createTextNode(data[i].title + " with " + data[i].company + " | " + "Location: " + data[i].location.location);
+                buttonTag.appendChild(buttonTextNode);
+                const vacancyResults = document.getElementById("vacancies-results");
+                vacancyResults.appendChild(buttonTag);
+
+                // Div - content - Job description
+                const divTag = document.createElement("div");
+                divTag.className = 'content';
+                const divTagText = document.createTextNode(data[i].summary);
+                divTag.appendChild(divTagText);
+                vacancyResults.appendChild(divTag);
+
+                // Break
+                const br = document.createElement('br');
+                divTag.appendChild(br);
+
+                // link
+                const a = document.createElement('a');
+                const link = document.createTextNode("Apply Here | Link to application")
+                a.appendChild(link);
+                a.title = "Apply Here";
+                a.href = data[i].link;
+                divTag.appendChild(a);
+
+                // Horizontal Rule
+                const hr = document.createElement('hr');
+                divTag.appendChild(hr);
+
+                // new code - API2
+                let baseUrlJobDescriptions = "https://api.lmiforall.org.uk/api/v1/soc/search?q=";
+
+                jobTitle = data[i].title.toLowerCase();
+                jobTitle = encodeURIComponent(jobTitle);
+
+                let url2 = baseUrlJobDescriptions + jobTitle;
+
+                fetch(url2)
+                    .then(response => {
+                        // Error handling
+                        if (response.status === 404) {
+                            alert("Job not found");
+                            throw new Error("Job not found")
+                        }
+                        console.log(url2)
+                        return response;
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data[i])
+                        console.log("API2 | " + data[0].title)
+                        console.log("General Information about " + data[0].title + " careers")
+                        console.log("Description | " + data[0].description)
+                        console.log("Tasks include | " + data[0].tasks)
+                        console.log(" ")
+
+                        // General Information about career
+                        const generalInformationHeader = document.createElement('h2')
+                        const generalInformationTextNode = document.createTextNode("General Information about " + data[0].title + " careers")
+                        generalInformationHeader.appendChild(generalInformationTextNode);
+                        divTag.appendChild(generalInformationHeader);
+
+                        // Description
+                        const careerDescriptionTag = document.createElement('p')
+                        const careerDescriptionTextNode = document.createTextNode("Description | " + data[0].description)
+                        careerDescriptionTag.appendChild(careerDescriptionTextNode);
+                        divTag.appendChild(careerDescriptionTag)
+
+                        // Tasks include
+                        const careerTasksTag = document.createElement('h3')
+                        const careerTasksTextNode = document.createTextNode("Tasks Include ")
+                        careerTasksTag.appendChild(careerTasksTextNode)
+                        divTag.appendChild(careerTasksTag)
+
+                        const commonTasksTag = document.createElement('p')
+                        const commonTasksTextNode = document.createTextNode(data[0].tasks)
+                        commonTasksTag.appendChild(commonTasksTextNode)
+                        divTag.appendChild(commonTasksTag)
+                    })
+
+            }
 
             // Show and hide vacancies
             const coll = document.getElementsByClassName("collapsible");
@@ -121,6 +271,8 @@ fetch(topTenVacancies)
                 });
             }
         })
+
+}
 
 // Search for vacancies
 
