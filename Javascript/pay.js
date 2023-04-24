@@ -104,6 +104,7 @@ function results(evt) {
     a.appendChild(link);
     a.title = "Vacancies";
     a.href = "./vacancies.html";
+    a.target="_blank";
     results.appendChild(a);
 
     // User hours worked and timeframe selected
