@@ -2,16 +2,6 @@
 let cookie = document.cookie;
 console.log("cookie: " + cookie)
 
-// let addOn = cookie
-// addOn  = cookie.split("=")
-// addOn = addOn[1]
-// console.log(addOn)
-//
-// addOn = addOn.toLowerCase();
-// addOn = encodeURIComponent(addOn)
-
-// Top 10 most recent vacancies
-// let topTenVacancies = "https://api.lmiforall.org.uk/api/v1/vacancies/search?limit=10&keywords=most%20recent"
 
 if (cookie != " ") {
 
