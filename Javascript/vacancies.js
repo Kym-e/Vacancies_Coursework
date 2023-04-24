@@ -61,6 +61,7 @@ if (cookie != " ") {
                 a.appendChild(link);
                 a.title = "Apply Here";
                 a.href = data[i].link;
+                a.target="_blank";
                 divTag.appendChild(a);
 
                 // Horizontal Rule
@@ -188,6 +189,7 @@ if (cookie != " ") {
                 a.appendChild(link);
                 a.title = "Apply Here";
                 a.href = data[i].link;
+                a.target="_blank";
                 divTag.appendChild(a);
 
                 // Horizontal Rule
@@ -353,6 +355,7 @@ function displayJobDetails(data, header) {
         a1.appendChild(link1);
         a1.title = "Apply Here";
         a1.href = data[i].link;
+        a1.target="_blank";
         divTag1.appendChild(a1);
 
         // Horizontal Rule
