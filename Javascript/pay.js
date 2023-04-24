@@ -89,7 +89,7 @@ function results(evt) {
 
     // Get the result card
     let results = document.getElementById("pay-calculation-results-body")
-    results.innerHTML = "";
+    results.innerHTML = ""
 
     // Create Header
     let cardTitle = document.createElement("h4");
@@ -196,8 +196,15 @@ function results(evt) {
     // Add table to card
     results.appendChild(resultTable);
 
+    document.getElementById("pay-calculation-results-section").style.display = "block";
+
+
     // NEWCODE
-    window.open("vacancies.html")
+    let vacancyWindow = window.open("vacancies.html");
+    vacancyWindow.open("vacancies.html")
+    let searchBar = vacancyWindow.document.getElementById("vacancies-search-bar")
+    searchBar.setAttribute("value", jobTitle)
+
 
 }
 

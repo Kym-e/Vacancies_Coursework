@@ -125,8 +125,14 @@ fetch(topTenVacancies)
 // Search for vacancies
 
 document.getElementById("vacanciesForm").addEventListener("submit", vacanciesApiCall);
+
+const element = document.getElementById("vacancies-results");
+element.innerHTML = "";
+
 function vacanciesApiCall(evt) {
     evt.preventDefault();
+    // const element = document.getElementById("vacancies-results");
+    // element.innerHTML = "";
 
     let jobSearch = document.getElementById("vacancies-search-bar").value;
     console.log(jobSearch)
@@ -159,8 +165,6 @@ function vacanciesApiCall(evt) {
         .then(data => {
             console.log("Search Results")
             console.log(data)
-
-            const element = document.getElementById("vacancies-results"); element.remove();  //FIXME: BUG!
 
             displayJobDetails(data, "Results")
 

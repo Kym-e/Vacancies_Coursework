@@ -413,3 +413,7 @@
     line-height: 29px;
     color: #000000;
 }
+
+#pay-calculation-results-section {
+    display: none;
+}
