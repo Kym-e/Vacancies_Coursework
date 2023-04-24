@@ -2,6 +2,7 @@
 
 let form = document.getElementById("payForm");
 form.addEventListener("submit", results);
+// form.addEventListener("submit", newPage);
 
 function results(evt) {
     evt.preventDefault();
@@ -194,6 +195,9 @@ function results(evt) {
 
     // Add table to card
     results.appendChild(resultTable);
+
+    // NEWCODE
+    window.open("vacancies.html")
 
 }
 
